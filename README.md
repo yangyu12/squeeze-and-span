@@ -1,5 +1,5 @@
-# DistillGAN
-**Distilling Representations from GAN Generator via Squeeze and Span (NeurIPS'2022 anonymous submission)** 
+# Squeeze-and-Span
+**Yu Yang\*, Xiaotian Cheng\*, Chang Liu, Hakan Bilen, Xiangyang Ji. Distilling Representations from GAN Generator via Squeeze and Span. In NeurIPS 2022. [[pdf](https://openreview.net/pdf?id=_P4JCoz83Mb), [bibtex](##Citation)]** 
 
 ![](doc/taxonomy.png)
 ![](doc/framework.png)
@@ -38,7 +38,7 @@ checkpoints/
 
 ## Experiment scripts
 
-### Table 1: representation transfer from different teachers
+### Table 1: Representation transfer from different teachers
 
 | Knowledge Source | Transfer Method | Domain | CIFAR10 | CIFAR100 |
 |:----       |:-----------| :-----| :---: | :---: |
@@ -48,25 +48,26 @@ checkpoints/
 | Latent variable | Encoding | Syn. & Real | 50.27 \[[script](scripts/transfer_latent/encode_w_syn_real_cifar10.sh)\]  | 28.43 \[[script](scripts/transfer_latent/encode_w_syn_real_cifar100.sh)\] |
 | Latent variable | Vanilla distillation (w/ aug) | Syn. | 84.84 \[[script](scripts/transfer_latent/vanilla_distill_w_cifar10.sh)\]  | 53.26 \[[script](scripts/transfer_latent/vanilla_distill_w_cifar100.sh)\] |
 | Latent variable | Squeeze | Syn. | 86.99 \[[script](scripts/transfer_latent/squeeze_w_cifar10.sh)\]  | 58.56 \[[script](scripts/transfer_latent/squeeze_w_cifar100.sh)\] |
+| Latent variable | Squeeze and span | Syn. & Real | 90.95 | 66.17 |
 | Generator feature | Vanilla distillation (w/ aug) | Syn. | 84.48 \[[script](scripts/transfer_latent/vanilla_distill_g_cifar10.sh)\]  | 52.77 [script](scripts/transfer_latent/vanilla_distill_g_cifar100.sh)\] |
 | Generator feature | Squeeze | Syn. | 87.67 \[[script](scripts/squeeze_and_span/cifar10_squeeze.sh)\]  | 57.35 \[[script](scripts/squeeze_and_span/cifar100_squeeze.sh)\] |
 | Generator feature | Squeeze and span | Syn. & Real | 92.54 \[[script](scripts/squeeze_and_span/cifar10_squ_spa.sh)\]  | 67.87 \[[script](scripts/squeeze_and_span/cifar100_squ_spa.sh)\] |
 
 
-### Table 2: comparison to SSL
+### Table 2: Comparison to SSL
 
 | Pretrain Data | Methods | CIFAR10 | CIFAR100 | STL10 |
 |:----       |:-----------| :-----:| :---: | :---: |
-| Real | SimSiam | 90.94 \[[script](scripts/compare_ssl/real_simsiam_cifar10.sh)\] | 62.44 \[[script](scripts/compare_ssl/real_simsiam_cifar100.sh)\]  | 58.52 \[[script](scripts/compare_ssl/real_simsiam_stl10.sh)\] |
-| Real | VICReg | 89.20 \[[script](scripts/compare_ssl/real_vicreg_cifar10.sh)\] | 63.31 \[[script](scripts/compare_ssl/real_vicreg_cifar100.sh)\]  | 72.30 \[[script](scripts/compare_ssl/real_vicreg_stl10.sh)\] |
-| Syn | SimSiam | 85.11 \[[script](scripts/compare_ssl/syn_simsiam_cifar10.sh)\] | 47.89 \[[script](scripts/compare_ssl/syn_simsiam_cifar100.sh)\]  | 59.85 \[[script](scripts/compare_ssl/syn_simsiam_stl10.sh)\] |
-| Syn | VICReg | 84.68 \[[script](scripts/compare_ssl/syn_vicreg_cifar10.sh)\] | 52.84 \[[script](scripts/compare_ssl/syn_simsiam_cifar100.sh)\]  | 65.42 \[[script](scripts/compare_ssl/syn_vicreg_stl10.sh)\] |
-| Syn | Squeeze (Ours) | 87.67 \[[script](scripts/squeeze_and_span/cifar10_squeeze.sh)\] | 57.35 \[[script](scripts/squeeze_and_span/cifa100_squeeze.sh)\]  | 65.73 \[[script](scripts/squeeze_and_span/stl10_squeeze.sh)\] |
-| Real & Syn | SimSiam | 90.88 \[[script](scripts/compare_ssl/mix_simsiam_cifar10.sh)\] | 62.68 \[[script](scripts/compare_ssl/mix_simsiam_cifar100.sh)\]  | 55.87 \[[script](scripts/compare_ssl/mix_simsiam_stl10.sh)\] |
-| Real & Syn | VICReg | 90.46 \[[script](scripts/compare_ssl/mix_vicreg_cifar10.sh)\] | 65.22 \[[script](scripts/compare_ssl/mix_vicreg_cifar100.sh)\]  | 69.32 \[[script](scripts/compare_ssl/mix_vicreg_stl10.sh)\] |
-| Real & Syn | Squeeze & Span (Ours) | 92.54 \[[script](scripts/squeeze_and_span/cifar10_squ_spa.sh)\] | 67.87 \[[script](scripts/squeeze_and_span/cifar100_squ_spa.sh)\]  | 69.60 \[[script](scripts/squeeze_and_span/stl10_squ_spa.sh)\] |
+| Real | SimSiam | 90.94 \[[script](scripts/compare_ssl/real_simsiam_cifar10.sh)\] | 62.44 \[[script](scripts/compare_ssl/real_simsiam_cifar100.sh)\]  | 71.30 \[[script](scripts/compare_ssl/real_simsiam_stl10.sh)\] |
+| Real | VICReg | 89.20 \[[script](scripts/compare_ssl/real_vicreg_cifar10.sh)\] | 63.31 \[[script](scripts/compare_ssl/real_vicreg_cifar100.sh)\]  | 74.43 \[[script](scripts/compare_ssl/real_vicreg_stl10.sh)\] |
+| Syn | SimSiam | 85.11 \[[script](scripts/compare_ssl/syn_simsiam_cifar10.sh)\] | 47.89 \[[script](scripts/compare_ssl/syn_simsiam_cifar100.sh)\]  | 73.38 \[[script](scripts/compare_ssl/syn_simsiam_stl10.sh)\] |
+| Syn | VICReg | 84.68 \[[script](scripts/compare_ssl/syn_vicreg_cifar10.sh)\] | 52.84 \[[script](scripts/compare_ssl/syn_simsiam_cifar100.sh)\]  | 70.80 \[[script](scripts/compare_ssl/syn_vicreg_stl10.sh)\] |
+| Syn | Squeeze (Ours) | 87.67 \[[script](scripts/squeeze_and_span/cifar10_squeeze.sh)\] | 57.35 \[[script](scripts/squeeze_and_span/cifa100_squeeze.sh)\]  | 73.35 \[[script](scripts/squeeze_and_span/stl10_squeeze.sh)\] |
+| Real & Syn | SimSiam | 90.88 \[[script](scripts/compare_ssl/mix_simsiam_cifar10.sh)\] | 62.68 \[[script](scripts/compare_ssl/mix_simsiam_cifar100.sh)\]  | 71.70 \[[script](scripts/compare_ssl/mix_simsiam_stl10.sh)\] |
+| Real & Syn | VICReg | 90.46 \[[script](scripts/compare_ssl/mix_vicreg_cifar10.sh)\] | 65.22 \[[script](scripts/compare_ssl/mix_vicreg_cifar100.sh)\]  | 75.05 \[[script](scripts/compare_ssl/mix_vicreg_stl10.sh)\] |
+| Real & Syn | Squeeze & Span (Ours) | 92.54 \[[script](scripts/squeeze_and_span/cifar10_squ_spa.sh)\] | 67.87 \[[script](scripts/squeeze_and_span/cifar100_squ_spa.sh)\]  | 76.83 \[[script](scripts/squeeze_and_span/stl10_squ_spa.sh)\] |
 
-### Table 3: ablation study
+### Table 5: Ablation study
 
 | | $\mathcal{L}_{\text{RD}}$ | $\mathcal{A}$ | $T_\phi$ | $\mathcal{L}_{\text{var}}$ | $\mathcal{L}_{\text{cov}}$ | Span | Top-1 Acc |
 |:----|:----:| :----: | :---: | :---: | :---: | :---: | :---: |
@@ -97,4 +98,16 @@ python paper_plots/acc_vs_fid.py
 | CIFAR100  | scripts/cifar100_eval_linear.sh |
 | STL10     | scripts/stl10_eval_linear.sh |
 
-
+## Citation
+If you find this repository useful in your research, please consider citing:
+```
+@inproceedings{
+    yang2022distilling,
+    title={Distilling Representations from {GAN} Generator via Squeeze and Span},
+    author={Yu Yang* and Xiaotian Cheng* and Chang Liu and Hakan Bilen and Xiangyang Ji},
+    booktitle={Advances in Neural Information Processing Systems},
+    editor={Alice H. Oh and Alekh Agarwal and Danielle Belgrave and Kyunghyun Cho},
+    year={2022},
+    url={https://openreview.net/forum?id=_P4JCoz83Mb}
+}
+```
